@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace SistemaBancario
 {
@@ -47,8 +48,17 @@ namespace SistemaBancario
                 throw new InvalidOperationException("Fundos insuficientes");
             }
             var saque = new Transacao( -quantidade, data, nota );
-            todasAsTransacoes.Add(saque);
-            
+            todasAsTransacoes.Add(saque);           
+        }
+        public string HistoricoDeTrasacoes()
+        {
+            var reporte = new StringBuilder();
+            reporte.AppendLine("Data\tQuantidade\tNota");
+            foreach (var item in todasAsTransacoes)
+            {
+                reporte.AppendLine($"{item.data.ToShortDateString()}\t{item.quantidade}\t{item.nota}");
+            }
+            return reporte.ToString();
         }
     }
 }
