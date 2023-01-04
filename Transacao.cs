@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaBancario
 {
-    public class Transacao
+    public class Transacao  //Classe para transação
     {
         public decimal quantidade { get; }
         public DateTime data { get; }
