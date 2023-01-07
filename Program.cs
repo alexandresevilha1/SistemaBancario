@@ -33,13 +33,16 @@ namespace SistemaBancario
                 ---------------------------------------------
                 ");
 
+                var nome = "a";
                 var opcao = Console.ReadLine();
-                
-                switch(opcao)
+                switch (opcao)
                 {
                     case "1":
+                       
+                        do
+                        {
 
-                        Console.WriteLine(@"
+                            Console.WriteLine(@"
                         _____________________________________________
                         |        Pressione 0 para terminar a sessão |
                         |                                           |
@@ -48,15 +51,43 @@ namespace SistemaBancario
                         ---------------------------------------------
                         ");
 
-                        string nome = Console.ReadLine();
+                            nome = Console.ReadLine();
 
-                        var conta = new ContaBancaria(nome, 0);
+                        } while (nome == "a");
+
+                        var conta = new ContaBancaria(nome, 1);
+
+                        Console.WriteLine(@$"
+                        _____________________________________________
+                        |        Pressione 0 para terminar a sessão |
+                        |                                           |
+                        | Parabens Sua conta foi criada com sucesso |
+                        |                                           |   
+                        |    Titular: {conta.Titular}               | 
+                        |    Numero: {conta.Numero}                 |
+                        |    Balanço: {conta.Balanco}               |
+                        ---------------------------------------------
+                        ");
+                        Console.ReadKey();
+
+                        Console.WriteLine(@"
+                        _____________________________________________
+                        |        Pressione 0 para terminar a sessão |
+                        |                                           |
+                        | Por favor escolha uma das opções abaixo   |
+                        |                                           |
+                        |     1 - Fazer Deposito                    |  
+                        |     2 - Fazer Saque                       | 
+                        |                                           |
+                        ---------------------------------------------
+                        ");
                         break;
 
                     default:
                         Console.WriteLine("Por favor digite uma opção valida");
                         break;
                 }
+
             } while (Console.ReadKey().Key != 0);
 
         }
