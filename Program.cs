@@ -8,87 +8,78 @@ namespace SistemaBancario
     {
         static void Main(string[] args)
         {
-            do
-            {
-                Console.WriteLine(@"
-        _____________________________________________
-        |                                           |
-        |   !!Bem vindo ao meu Sistema Bancario!!   |
-        |                                           |
-        ---------------------------------------------
-                     Pressione Enter para continuar
-            ");
-            } while (Console.ReadKey().Key!= ConsoleKey.Enter);
 
-            do 
-            {
+                string opcao;
+                string nome;
+            
                 Console.WriteLine(@"
-                _____________________________________________
-                |        Pressione 0 para terminar a sessão |
-                |                                           |
-                | Por favor escolha uma das opções abaixo   |
-                |                                           |
-                |     1 - Criar conta                       |  
-                |                                           | 
-                ---------------------------------------------
+                  ----------------------------------------
+                  |                                      |
+                  |  !!Bem-Vindo(a) ao meu Super Banco!! |
+                  |                                      |
+                  ----------------------------------------
                 ");
 
-                var nome = "a";
-                var opcao = Console.ReadLine();
+                Console.ReadLine();
+
+                Console.Clear();
+
+                Console.WriteLine(@"
+                  --------------------------------------------
+                  |                                          |
+                  |  Por favor selecione a operação desejada |
+                  |                                          |
+                  |  1 - Criar uma nova conta                |
+                  |                                          |
+                  --------------------------------------------
+                ");
+
+                opcao = Console.ReadLine();
+
                 switch (opcao)
                 {
-                    case "1":
-                       
-                        do
-                        {
+                case "1":
 
-                            Console.WriteLine(@"
-                        _____________________________________________
-                        |        Pressione 0 para terminar a sessão |
-                        |                                           |
-                        |     Por favor digite nome do titular      |
-                        |                                           |                                               
-                        ---------------------------------------------
-                        ");
-
-                            nome = Console.ReadLine();
-
-                        } while (nome == "a");
-
-                        var conta = new ContaBancaria(nome, 1);
-
-                        Console.WriteLine(@$"
-                        _____________________________________________
-                        |        Pressione 0 para terminar a sessão |
-                        |                                           |
-                        | Parabens Sua conta foi criada com sucesso |
-                        |                                           |   
-                        |    Titular: {conta.Titular}               | 
-                        |    Numero: {conta.Numero}                 |
-                        |    Balanço: {conta.Balanco}               |
-                        ---------------------------------------------
-                        ");
-                        Console.ReadKey();
+                        Console.Clear();
 
                         Console.WriteLine(@"
-                        _____________________________________________
-                        |        Pressione 0 para terminar a sessão |
-                        |                                           |
-                        | Por favor escolha uma das opções abaixo   |
-                        |                                           |
-                        |     1 - Fazer Deposito                    |  
-                        |     2 - Fazer Saque                       | 
-                        |                                           |
-                        ---------------------------------------------
+                        -------------------------------------------
+                        |                                         |
+                        |  Por favor digite o nome do propietario |
+                        |                                         |
+                        -------------------------------------------
                         ");
-                        break;
 
-                    default:
-                        Console.WriteLine("Por favor digite uma opção valida");
-                        break;
+                        nome = Console.ReadLine();
+
+                        Console.Clear();
+
+                        Console.WriteLine(@"
+                        -------------------------------------------
+                        |                                         |
+                        |  Por favor digite um valor de deposito  |
+                        |                                         |
+                        -------------------------------------------
+                        ");                     
+
+                        var conta = new ContaBancaria(nome, 100);
+
+                        Console.Clear();
+
+                        Console.WriteLine(@$"
+                        -----------------------------------------------------------------
+                        |                                                               |
+                        |  Parabens {conta.Titular}!! sua conta foi criada com sucesso  |
+                        |                                                               |
+                        |  Numero da conta: {conta.Numero}                              |
+                        |  Saldo da conta: {conta.Balanco}                              |
+                        -----------------------------------------------------------------
+                        "); 
+
+                        Console.ReadLine(); 
+
+                    break;
                 }
-
-            } while (Console.ReadKey().Key != 0);
 
         }
     }   
