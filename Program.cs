@@ -11,6 +11,7 @@ namespace SistemaBancario
 
                 string opcao;
                 string nome;
+                string valor;            
             
                 Console.WriteLine(@"
                   ----------------------------------------
@@ -52,17 +53,17 @@ namespace SistemaBancario
 
                         nome = Console.ReadLine();
 
-                        Console.Clear();
+                         Console.WriteLine(@"
+                        --------------------------------------
+                        |                                    |
+                        |  Por favor digite o valor inicial  |
+                        |                                    |
+                        --------------------------------------
+                        ");
 
-                        Console.WriteLine(@"
-                        -------------------------------------------
-                        |                                         |
-                        |  Por favor digite um valor de deposito  |
-                        |                                         |
-                        -------------------------------------------
-                        ");                     
+                        valor = Console.ReadLine();
 
-                        var conta = new ContaBancaria(nome, 100);
+                        var conta = new ContaBancaria(nome, Convert.ToDecimal(valor));
 
                         Console.Clear();
 
@@ -76,10 +77,99 @@ namespace SistemaBancario
                         -----------------------------------------------------------------
                         "); 
 
-                        Console.ReadLine(); 
+                        Console.ReadLine();
 
-                    break;
-                }
+                    do
+                    {
+
+                        Console.Clear();
+
+                        Console.WriteLine(@"
+                        ------------------------------------------
+                        |                                        |
+                        |  Por favor selecione a opção desejada  |
+                        |                                        |
+                        |  1 - Fazer deposito                    |
+                        |  2 - Fazer saque                       |
+                        |  3 - Historico de transações           |
+                        |                                        |
+                        ------------------------------------------
+                        ");
+
+                        opcao = Console.ReadLine();
+
+                        switch (opcao)
+                        {
+                            case "1":
+                                Console.WriteLine(@"
+                                ---------------------------------------
+                                |                                     |
+                                |  Por favor digite o valor desejado  |
+                                |                                     |
+                                ---------------------------------------
+                                ");
+
+                                valor = Console.ReadLine();
+
+                                conta.FazerDeposito(Convert.ToDecimal(valor), DateTime.Now, "Entrada");
+
+                                Console.WriteLine(@$"
+                                --------------------------------------------------------
+                                |                                                      |
+                                |  Pronto {conta.Titular}, Deposito feito com sucesso  |
+                                |                                                      |
+                                |  Balanço: {conta.Balanco}                            |
+                                |                                                      |
+                                --------------------------------------------------------
+                                ");
+
+                                Console.ReadLine();
+
+                                break;
+
+                            case "2":
+
+                                Console.WriteLine(@"
+                                ---------------------------------------
+                                |                                     |
+                                |  Por favor digite o valor desejado  |
+                                |                                     |
+                                ---------------------------------------
+                                ");
+
+                                valor = Console.ReadLine();
+
+                                conta.FazerSaque(Convert.ToDecimal(valor), DateTime.Now, "Saida");
+
+                                Console.WriteLine(@$"
+                                -----------------------------------------------------
+                                |                                                   |
+                                |  Pronto {conta.Titular}, Saque feito com sucesso  |
+                                |                                                   |
+                                |  Balanço: {conta.Balanco}                         |
+                                |                                                   |
+                                -----------------------------------------------------
+                                ");
+
+                                Console.ReadLine();
+
+                                break;
+
+                        }
+
+                default:
+                    Console.WriteLine(@"
+                    ---------------------------------------
+                    |                                     |
+                    |  Por favor digite uma opção válida  |
+                    |                                     |
+                    ---------------------------------------
+                    ");
+
+                    Console.ReadLine();
+                        break;
+
+            }
 
         }
     }   
