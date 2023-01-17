@@ -13,10 +13,12 @@ namespace SistemaBancario
             string opcao;
             string nome;
             string valor;
+            string descricao;
 
             do
             {
 
+                Console.Clear();
                 Console.WriteLine(@"
                   --------------------------------------
                   |                                    |
@@ -85,6 +87,7 @@ namespace SistemaBancario
                               |                                 digite 0 para encerrar o sistema|
                               -------------------------------------------------------------------
                             ");
+                            Console.ReadLine(); 
                         }
                         catch (Exception)
                         {
@@ -97,6 +100,74 @@ namespace SistemaBancario
                               |     digite 0 para encerrar o sistema|
                               ---------------------------------------
                             ");
+                            Console.ReadLine();
+                        }
+
+                        Console.Clear();
+                        Console.WriteLine(@"
+                          --------------------------------------------
+                          |                                          |
+                          |  Por favor digite uma das opções abaixo  |
+                          |                                          |
+                          |  1 - Fazer deposito                      |
+                          |  2 - Fazer saque                         |
+                          |  3 - Fazer saque                         |
+                          |                                          |
+                          |          digite 0 para encerrar o sistema|
+                          --------------------------------------------
+                        ");
+
+                        opcao = Console.ReadLine(); 
+
+                        switch (Convert.ToInt32(opcao))
+                        {
+                            case 1:
+                                Console.Clear();
+                                Console.WriteLine(@"
+                                  ------------------------------------------
+                                  |                                        |
+                                  |  Por favor digite o valor de deposito  |
+                                  |                                        |
+                                  |        digite 0 para encerrar o sistema|
+                                  ------------------------------------------
+                                ");                                
+
+                                valor = Console.ReadLine();
+
+                                Console.Clear();
+                                Console.WriteLine(@"
+                                  -------------------------------------------
+                                  |                                         |
+                                  |  Por favor digite o motivo de deposito  |
+                                  |                                         |
+                                  |         digite 0 para encerrar o sistema|
+                                  -------------------------------------------
+                                ");
+
+                                descricao = Console.ReadLine();
+
+                                var conta = new ContaBancaria(nome, Convert.ToInt32(valor));
+
+                                conta.FazerDeposito(Convert.ToDecimal(valor), DateTime.Now, descricao);
+
+                                Console.Clear();
+                                Console.WriteLine(@$"
+                                  -------------------------------------------
+                                  |                                         |
+                                  |  Seu deposito foi feito com sucesso     |
+                                  |                                         |
+                                  |  Novo balanço:  {conta.Balanco}         |
+                                  |         digite 0 para encerrar o sistema|
+                                  -------------------------------------------
+                                ");
+                                Console.ReadLine(); 
+
+                                break;
+
+                            case 2:
+                                Console.WriteLine("ta dando certo 2");
+                                Console.ReadLine();
+                                break;
                         }
 
                         break;
@@ -110,6 +181,7 @@ namespace SistemaBancario
                           |                                     |                                                
                           ---------------------------------------
                         ");
+                        Console.ReadLine();
                         break;
                 }
 
